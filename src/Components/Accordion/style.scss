@@ -1,0 +1,59 @@
+.accordion {
+    // Permet de supprimer visuellement tous les elements qui sortent de la div
+    overflow: hidden;
+    margin-inline: 20px;
+
+    &__top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        user-select: none;
+        background-color: #050505;
+        color: white;
+        padding: 10px;
+        border-radius: 10px;
+
+        span {
+            font-weight: 500;
+            font-size: 18px;
+            color: #fff;
+
+            @media screen and (max-width: 768px) {
+                font-size: 13px;
+            }
+        }
+
+        img {
+            transition: 0.25s;
+
+            &.active {
+                transform: rotate(-180deg);
+                transform-origin: center;
+            }
+        }
+    }
+
+    &__bottom {
+        background-color: #F6F6F6;
+        padding: 0 20px;
+        color: #000000;
+        opacity: 0;
+        height: 0;
+        transition: 0.5s;
+        gap: 10px;
+        display: flex;
+        flex-direction: column;
+
+        p {
+            margin: 0;
+            cursor: pointer;
+        }
+
+        &.active {
+            opacity: 1;
+            height: unset;
+            padding: 20px;
+        }
+    }
+}

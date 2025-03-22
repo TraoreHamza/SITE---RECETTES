@@ -1,0 +1,45 @@
+@font-face { 
+  font-family: homeday; 
+  src: url('../fonts/Homeday.ttf');
+}
+.header {
+    background-color: black;
+    padding: 20px;
+    border-radius: 0 0 20px 20px ;
+
+    div {
+      font-family: "homeday";
+      color: #fff;
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   
+    input {
+      padding: 10px 20px;
+      margin: 20px 0;
+      width: 300px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+    }
+    ul {
+        display: flex;
+        gap: 2rem;
+
+        li {
+          list-style-type: none;
+        }
+
+        a {
+          text-decoration: none;
+          color: white;
+          font-size: 20px;
+        }
+    }
+  }
+}

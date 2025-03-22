@@ -1,0 +1,74 @@
+.section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    margin: 20px;
+    a {
+        text-decoration: none;
+    }
+    .card {
+        position: relative;
+        width: 100%;
+        background-color: black;
+        padding-bottom: 25%;
+        margin: 0 auto;
+        border-radius: 10px;
+
+        figure img {
+            width: 100%;
+            border-radius: 10px 10px 0 0;
+        }
+         .info {
+            display: flex;
+            justify-content: space-between;
+            margin-inline: 1rem;
+            margin-top: 5px;
+           
+            span {
+                color: #fff;
+            }
+
+            .info_span {
+                background-color: #3D8380;
+                border-radius: 12px;
+                width: max-content;
+                padding: 2px 7px 2px 7px;
+            }
+         }
+
+         h2 {
+            color: #FCDBA0;
+            margin-inline: 1rem;
+            margin-top: 2rem;
+        }
+
+        .info_prepa {
+            position: absolute;
+            bottom: 0;
+            display: flex;
+            gap: 1rem;
+            margin: 10px;
+            
+
+          .preparation {
+            color: #fff;
+
+            &::after {
+                content: "|";
+                margin-left: 12PX;
+            }
+          }
+
+          .cuisson {
+            color: #fff;
+
+            &::before {
+                content: '';
+            
+            }
+          }
+        }
+    }
+   
+}
