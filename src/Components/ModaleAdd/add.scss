@@ -1,10 +1,15 @@
 .modal {
-    position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-    display: none;
+    position: absolute;
+    background: white;
+    border-radius: 8px;
+    max-width: 450px;
+    margin: 50px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 0 40px 40px 40px ;
+    top: 0;
+    transform: translate(50%, 50%);
+    z-index: 1;
+    
 
     &.active {
         display: flex;
@@ -14,8 +19,6 @@
         background-color: white;
         padding: 20px;
         border-radius: 10px;
-        max-height: 650px;
-        max-width: 500px;
         height: 100%;
         width: 100%;
         display: flex;

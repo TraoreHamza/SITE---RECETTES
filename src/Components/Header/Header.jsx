@@ -26,7 +26,7 @@ const Header = ({ onSearch }) => {
                 <ul>
                     <li><Link to="/">Accueil</Link></li>
                     <li><Link to="/contact">Contact</Link></li>
-                    <li><Link to="/add">Ajouter une recette</Link></li>
+                    <li><Link to="#">Ajouter une recette</Link></li>
                     <li><Link to="/favories">♡</Link></li>
                 </ul>
             </nav>

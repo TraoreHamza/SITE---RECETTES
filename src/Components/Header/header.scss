@@ -43,3 +43,18 @@
     }
   }
 }
+ svg {
+    display: none;
+}
+
+
+@media screen and (max-width: 650px) {
+  #links ul, #links input {
+      display: none !important;
+  }
+ svg {
+      display: unset !important;
+      height: 60px;
+      margin: auto;
+  }
+}

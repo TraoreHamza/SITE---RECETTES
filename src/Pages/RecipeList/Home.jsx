@@ -2,10 +2,11 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBowlRice, faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faBowlRice, faHeart, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { faUtensils } from "@fortawesome/free-solid-svg-icons";
 import Header from '../../Components/Header/Header';
 import Accordion from '../../Components/Accordion/Accordion';
+import ModalAdd from '../../Components/ModaleAdd/Add';
 import Recipes from '../recipe';
 import '../SASS/home.scss';
 
@@ -16,6 +17,14 @@ const Home = () => {
     const [selectedType, setSelectedType] = useState('Tous');
     const [filteredRecipes, setFilteredRecipes] = useState([]);
     const [suggestions, setSuggestions] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleAddRecipe = (newRecipe) => {
+        // Logique pour ajouter la nouvelle recette à votre liste de recettes
+        console.log('Nouvelle recette :', newRecipe);
+        // Vous devrez implémenter la logique pour ajouter cette recette à votre état ou à votre base de données
+      };
+
 
     // Initialisez filteredRecipes et favorites dans un useEffect 
     useEffect(() => {
@@ -84,6 +93,7 @@ const Home = () => {
     };
     return (
         <>
+        <ModalAdd  isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
             <Header onSearch={handleSearch} />
         {suggestions.length > 0 && (
             <ul className="suggestions">
@@ -98,6 +108,7 @@ const Home = () => {
             ))}
             </ul>
         )}
+        <span onClick={() => setIsModalOpen(true)}>Editer <FontAwesomeIcon icon={faPenToSquare} /></span>
             <h1>NOS RECETTES</h1>
             <div className="rental__accordions">
                 <Accordion title="Catégories" content={['Toutes', ...new Set(Recipes.map(recipe => recipe.catégory))]}
