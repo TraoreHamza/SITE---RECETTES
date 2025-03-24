@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Recipes from '../../Pages/recipe.json';
 import './add.scss';
 
-const ModalAdd = ({ isOpen, onClose }) => {
+const ModalAdd = ({ isOpen, onClose, reload }) => {
     const [categories, setCategories] = useState([]);
     const [types, setTypes] = useState([]);
     const [preview, setPreview] = useState();
@@ -18,7 +18,8 @@ const ModalAdd = ({ isOpen, onClose }) => {
         const uniqueTypes = [...new Set(Recipes.map(recipe => recipe.type))];
         setTypes(uniqueTypes);
     }, []);
-
+    
+    // Fonction pour afficher la preview de l'image
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         setPreview(URL.createObjectURL(file));
@@ -47,6 +48,7 @@ const ModalAdd = ({ isOpen, onClose }) => {
         // Fermer le modal et réinitialiser le formulaire
         onClose();
         setPreview();
+        reload();
         e.target.reset();
 
     }
@@ -67,7 +69,7 @@ const ModalAdd = ({ isOpen, onClose }) => {
                             <img src={preview} alt="preview" />
                             :
                             <>
-                                <img src={"/assets/icons/placeholder.svg"} alt="placeholder" />
+                                <img src={"/icons/placeholder.svg"} alt="placeholder" />
                                 <label htmlFor="image">+ ajouter photo</label>
                                 <span>jpg, png : 4mo max</span>
                             </>
@@ -77,10 +79,10 @@ const ModalAdd = ({ isOpen, onClose }) => {
                     <label htmlFor="name">Nom</label>
                     <input type="text" id="name" name="name" />
 
-                    <label htmlFor="preparationTime">Temps de préparation (minutes)</label>
+                    <label htmlFor="preparationTime">Temps de préparation</label>
                     <input type="number" id="preparationTime" name="preparationTime" />
 
-                    <label htmlFor="cookTime">Temps de cuisson (minutes)</label>
+                    <label htmlFor="cookTime">Temps de cuisson</label>
                     <input type="number" id="cookTime" name="cookTime" />
 
                     <label htmlFor="category">Catégorie</label>
@@ -103,7 +105,6 @@ const ModalAdd = ({ isOpen, onClose }) => {
                     <label htmlFor="instructions">Étapes (une par ligne)</label>
                     <textarea name="instructions" id="instructions"></textarea>
                 </form>
-                <hr />
                 <button form="test">Valider</button>
             </div>
         </div>

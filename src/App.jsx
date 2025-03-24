@@ -4,6 +4,8 @@ import Details from './Pages/RecipeDetail/Details';
 import Favories from './Pages/FavoriteRecipes/Favories'
 import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
+import RecipeForm from './Pages/RecipeForm/RecipeForm';
+
 
 import './App.css'
 function App() {
@@ -15,6 +17,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/details/:id" element={<Details />} />
       <Route path="/favories" element={<Favories />} />
+      <Route path="/add" element={<RecipeForm />} />
     </Routes>
     <Footer />
   </BrowserRouter>

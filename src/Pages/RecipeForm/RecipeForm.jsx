@@ -5,21 +5,24 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBowlRice, faHeart, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { faUtensils } from "@fortawesome/free-solid-svg-icons";
 import Header from '../../Components/Header/Header';
-import Accordion from '../../Components/Accordion/Accordion';
+import ModalAdd from '../../Components/ModaleAdd/Add';
 import Recipes from '../recipe.json'; // Import du fichier JSON
 import '../SASS/home.scss';
 
-const Home = () => {
+const RecipeForm = () => {
     // 
     const [favorites, setFavorites] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState('Toutes');
-    const [selectedType, setSelectedType] = useState('Tous');
     const [filteredRecipes, setFilteredRecipes] = useState([]);
-     const [search, setSearch] = useState('');
     const [suggestions, setSuggestions] = useState([]);
-    const [recipes, setRecipes] = useState(Recipes);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [recipes, setRecipes] = useState(Recipes)
 
-  
+    const handleAddRecipe = (newRecipe) => {
+        if (newRecipe) {
+            setRecipes(prevRecipes => [...prevRecipes, newRecipe]);
+        }
+        setIsModalOpen(false); // Fermer le modal après l'ajout
+    };
 
 
     // Initialisez filteredRecipes et favorites dans un useEffect 
@@ -28,6 +31,7 @@ const Home = () => {
         setFavorites(storedFavorites);
         setFilteredRecipes(recipes); // Utiliser recipes ici
     }, []);
+   
 
     // Fonction pour ajouter un recette a favorites
    const toggleFavorite = (recipeId) => {
@@ -61,17 +65,11 @@ const Home = () => {
         }
         // Met a jour filteredRecipes
         setFilteredRecipes(recipesFiltered);
-    };
-    // Fonction pour filtrer les catégories
-    const filterCategory = (category) => {
-        setSelectedCategory(category);
-        Filters(category, selectedType, search);
-    };
-    // Fonction pour afficher les types
-    const filterType = (type) => {
-        setSelectedType(type);
-        Filters(selectedCategory, type, search);
-    };
+    }
+
+    const reloadData = () => {
+    setRecipes(Recipes);
+  };
     
     // Fonction pour filtrer les recettes par search
     const handleSearch = (value) => {
@@ -89,8 +87,15 @@ const Home = () => {
         }
     };
 
+    const handleOpenModal = () => {
+        setIsModalOpen(true);
+    };
     return (
         <>
+        {/* Si isModalOpen est true, affichez le modal */}
+         {isModalOpen && (
+       < ModalAdd reload={reloadData} onClose={handleAddRecipe} isOpen={isModalOpen}/>
+        )}
             <Header onSearch={handleSearch} />
         {suggestions.length > 0 && (
             <ul className="suggestions">
@@ -106,12 +111,7 @@ const Home = () => {
             </ul>
         )}
             <h1>NOS RECETTES</h1>
-            <div className="rental__accordions">
-                <Accordion title="Catégories" content={['Toutes', ...new Set(recipes.map(recipe => recipe.catégory))]}
-                onSelect={filterCategory}/>
-                <Accordion title="Types" content={['Tous', ...new Set(recipes.map(recipe => recipe.type))]}
-                onSelect={filterType}/>
-            </div>
+            <span className='add' onClick={handleOpenModal}>Ajouter une recette <FontAwesomeIcon icon={faPenToSquare} /></span>
             <section className='section'>
             {filteredRecipes.map(recipe => (
             <article className='card' key={recipe.id}>
@@ -139,4 +139,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default RecipeForm;

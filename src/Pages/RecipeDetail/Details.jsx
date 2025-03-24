@@ -15,9 +15,9 @@ const Details = () => {
         <>
            <Header />
             <main>
-              <h1>{recipe.name}</h1>
+              <h1>{recipe && recipe.name}</h1>
                 <figure>
-                    <img src={recipe.image} alt="" />
+                    <img src={recipe && recipe.image} alt="" />
                 </figure>
                 <section className='flex__section'>
               <table class="info-table">
@@ -36,10 +36,10 @@ const Details = () => {
                 <tbody>
                   <tr>
                     <td class="prep-time">
-                      <p><FontAwesomeIcon icon={faUtensils} /><br /> Préparation <br/>{recipe.preparationTime} min</p>
+                      <p><FontAwesomeIcon icon={faUtensils} /><br /> Préparation <br/>{recipe && recipe.preparationTime} min</p>
                     </td>
                     <td class="cook-time">
-                      <p> <FontAwesomeIcon icon={faBowlRice} /> <br /> Cuisson <br/>{recipe.cookTime} min</p>
+                      <p> <FontAwesomeIcon icon={faBowlRice} /> <br /> Cuisson <br/>{recipe && recipe.cookTime} min</p>
                     </td>
                   </tr>
                 </tbody>
@@ -48,7 +48,7 @@ const Details = () => {
               <article>
                 <h3>Ingrédients:</h3>
                 <ul>
-                {recipe.ingrédients.map((ingredient, index) => (
+                {recipe && recipe.ingrédients.map((ingredient, index) => (
                       <li key={index}>{ingredient}</li>
                   ))}
                 </ul>
@@ -56,7 +56,7 @@ const Details = () => {
               <article>
                 <h3>Instruction:</h3>
                 <ul>
-                {recipe.instructions.map((instruction, index) => (
+                {recipe && recipe.instructions.map((instruction, index) => (
                         <li key={index}>{instruction}</li>
                   ))}
                 </ul>
