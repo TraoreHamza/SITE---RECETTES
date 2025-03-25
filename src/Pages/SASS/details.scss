@@ -40,7 +40,7 @@ main {
     thead {
       tr {
         th.author-info {
-           padding: 6%;
+          padding: 6%;
           text-align: left;
           border-bottom: 3px solid black;
           font-size: 30px;
@@ -90,10 +90,36 @@ main {
       }
     }
   
-    /* Make it responsive */
-    @media screen and (max-width: 600px) {
-      width: 100%;
+    @media screen and (max-width: 768px) {
+      thead, tbody, tr, td, th {
+        display: block;
+        text-align: center;
+      }
+      
+      td, th {
+        width: 100% !important;
+        border-right: none;
+      }
+      
+      tbody tr td:not(:last-child) {
+        border-bottom: 3px solid black;
+      }
     }
+   
+      th.author-info {
+        padding: 6%;
+        border-bottom: 3px solid black;
+        text-align: center;
+        font-size: 30px;
+      }
+
+      td.nutrition-info {
+        padding: 10px;
+        border-bottom: 3px solid black;
+        font-weight: bold;
+        font-size: 20px;
+        text-align: center;
+      }
   }
 
   .flex__section {
@@ -121,5 +147,14 @@ main {
 
         }
       }
+    }
+  }
+  @media screen and (max-width: 600px) {
+    main img {
+      width: 100%;
+    }
+    
+    .button button {
+      width: 100%;
     }
   }

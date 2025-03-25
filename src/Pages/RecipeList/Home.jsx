@@ -17,9 +17,10 @@ const Home = () => {
     const [filteredRecipes, setFilteredRecipes] = useState([]);
      const [search, setSearch] = useState('');
     const [suggestions, setSuggestions] = useState([]);
-    const [recipes, setRecipes] = useState(Recipes);
-
-  
+    const [recipes, setRecipes] = useState(() => {
+        const storedRecipes = JSON.parse(localStorage.getItem('recipes'));
+        return storedRecipes || Recipes;
+    });
 
 
     // Initialisez filteredRecipes et favorites dans un useEffect 

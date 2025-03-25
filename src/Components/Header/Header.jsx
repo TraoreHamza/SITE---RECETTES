@@ -1,28 +1,34 @@
 import React from 'react';
 import { useState } from 'react';
 import './header.scss'
-import {Link} from 'react-router';
+import {Link} from 'react-router'; //Correction de l'import
 
 const Header = ({ onSearch }) => {
     const [search, setSearch] = useState('');
+    const [isOpen, setIsOpen] = useState(false); 
+
+    const toggleMenu = () => {
+        setIsOpen(!isOpen);
+    };
 
     const handleSearch = (e) => {
         const value = e.target.value;
         setSearch(value);
         onSearch(value);
     };
-
     return (
         <>
         <header className='header'>
-            <nav>
-                <div>RECETTES.</div>
-                <input
+            <div>RECETTES.</div>
+             <div>
+                <input className='input'
                     type="text"
                     placeholder="Rechercher une recette..."
                     value={search}
                     onChange={handleSearch}
                 />
+            </div>
+            <nav >
                 <ul>
                     <li><Link to="/">Accueil</Link></li>
                     <li><Link to="#">Contact</Link></li>
@@ -30,7 +36,26 @@ const Header = ({ onSearch }) => {
                     <li><Link to="/favories">♡</Link></li>
                 </ul>
             </nav>
+        <svg className='svg' onClick={toggleMenu} id="burger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path d="M0 64H448v64H0V64zM0 224H448v64H0V224zM448 384v64H0V384H448z" />
+        </svg>
         </header>
+        <div class={"header-mobile" + (isOpen ? ' open' : "")}>
+           <div>
+                <input
+                    type="text"
+                    placeholder="Rechercher une recette..."
+                    value={search}
+                    onChange={handleSearch}
+                />
+            </div>
+            <ul>
+                <li><Link to="/">Accueil</Link></li>
+                <li><Link to="#">Contact</Link></li>
+                <li><Link to="/add">Ajouter une recette</Link></li>
+                <li><Link to="/favories">♡</Link></li>
+            </ul>
+        </div>
         </>
     );
 };

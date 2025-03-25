@@ -41,7 +41,10 @@ const Favorites = () => {
                 <img src={recipe.image} alt={recipe.name} />
               </figure>
               <div className='info'>
-                <span className='info_span'>{recipe.catégory}</span>
+                <div>
+                    <span className='info_span'>{recipe.catégory}</span>
+                    <span className='info_span'>{recipe.type}</span>
+                </div>
                 <span
                   className={`favorite-btn ${favorites.includes(recipe.id) ? 'active' : ''}`}
                   onClick={() => toggleFavorite(recipe.id)}

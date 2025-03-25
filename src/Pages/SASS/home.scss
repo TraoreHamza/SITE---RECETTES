@@ -7,10 +7,12 @@
     margin: 20px 0 50px;
 
     @media screen and (max-width: 768px) {
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: 1fr;
+        width: 95%; 
         gap: 20px;
         margin-bottom: 20px;
     }
+
 }
 
 h1 {
@@ -103,6 +105,9 @@ h1 {
             
             }
           }
+        @media screen and (max-width: 480px) {
+            position: static; 
+        }
         }
     }
     .favorite-btn {
@@ -112,5 +117,8 @@ h1 {
     .favorite-btn.active {
         color: red;
     }
-   
+
+    @media screen and (max-width: 768px) {
+        grid-template-columns: 1fr; 
+    }
 }

@@ -4,6 +4,11 @@
     gap: 20px;
     justify-content: center;
     margin: 20px;
+
+    @media (max-width: 480px) {
+        grid-template-columns: 1fr; 
+        margin: 10px; 
+    }
     a {
         text-decoration: none;
     }
@@ -14,6 +19,14 @@
         padding-bottom: 25%;
         margin: 0 auto;
         border-radius: 10px;
+
+        @media (max-width: 768px) {
+            padding-bottom: 50%; /* Increase padding on medium screens */
+        }
+
+        @media (max-width: 480px) {
+            padding-bottom: 100%; 
+        }
 
         figure img {
             width: 100%;

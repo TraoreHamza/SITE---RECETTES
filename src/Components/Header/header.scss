@@ -2,59 +2,115 @@
   font-family: homeday; 
   src: url('../fonts/Homeday.ttf');
 }
-.header {
-    background-color: black;
-    padding: 20px;
-    border-radius: 0 0 20px 20px ;
 
-    div {
-      font-family: "homeday";
-      color: #fff;
-      font-size: 30px;
-      font-weight: bold;
-    }
+.header {
+  position: relative;
+  background-color: black;
+  padding: 20px;
+  border-radius: 0 0 20px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  div {
+    font-family: "homeday";
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  input {
+    padding: 10px 20px;
+    margin: 20px 0;
+    width: 300px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+  }
 
   nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-   
-    input {
-      padding: 10px 20px;
-      margin: 20px 0;
-      width: 300px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 20px;
-    }
+
     ul {
-        display: flex;
-        gap: 2rem;
+      display: flex;
+      gap: 2rem;
 
-        li {
-          list-style-type: none;
-        }
+      li {
+        list-style-type: none;
+      }
 
-        a {
-          text-decoration: none;
-          color: white;
-          font-size: 20px;
-        }
+      a {
+        text-decoration: none;
+        color: white;
+        font-size: 20px;
+      }
     }
   }
 }
- svg {
-    display: none;
+
+.header-mobile {
+  display: none;
+  flex-direction: column; 
+  position: absolute; 
+  top: 100%;
+  width: 80%;
+  height: 400px;
+  background-color: #000000;
+  z-index: 1000;
+
+  input {
+    padding: 10px 20px;
+    margin: 20px 0;
+    width: 300px;
+    font-size: 16px;
+    border: 1px solid #050505;
+    border-radius: 20px;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    li {
+      list-style-type: none;
+    }
+
+    a {
+      text-decoration: none;
+      color: white;
+      font-size: 20px;
+    }
+  }
 }
 
+.header-mobile.open {
+  display: flex;
+  right: 0;
+  top: 0;
+}
+
+.svg {
+  display: none;
+  color: #fff;
+  position: absolute;
+  right: 20px;
+}
 
 @media screen and (max-width: 650px) {
-  #links ul, #links input {
-      display: none !important;
+  nav, .input {
+    display: none !important; 
   }
- svg {
-      display: unset !important;
-      height: 60px;
-      margin: auto;
+
+  .header-mobile {
+    display: none;
+  }
+  
+  .svg {
+    display: unset !important; 
+    height: 60px;
+    margin: auto;
   }
 }

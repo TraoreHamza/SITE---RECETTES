@@ -29,18 +29,30 @@ const ModalAdd = ({ isOpen, onClose, reload }) => {
         e.preventDefault();
 
         const formData = new FormData(e.target);
+        const file = e.target.image.files[0];
+        let imageData = null;
+    
+        if (file) {
+            imageData = await new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onloadend = () => resolve(reader.result);
+                reader.readAsDataURL(file);
+            });
+        }
         // Implémenter la logique pour ajouter la nouvelle recette à votre fichier JSON
         const newRecipe = {
             id: Recipes.length + 1,
             name: formData.get('name'),
             catégory: formData.get('catégory'),
             type: formData.get('type'),
-            image: preview,
+            image: imageData || "/icons/placeholder.svg",
             preparationTime: parseInt(formData.get('preparationTime')),
             cookTime: parseInt(formData.get('cookTime')),
             ingrédients: formData.get('ingrédients').split('\n'),
             instructions: formData.get('instructions').split('\n')
         };
+        onClose(newRecipe);
+
 
         // Ajouter la nouvelle recette à recipeData
         Recipes.push(newRecipe);

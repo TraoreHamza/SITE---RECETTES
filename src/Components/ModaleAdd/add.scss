@@ -1,58 +1,73 @@
 .modal {
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
     background-color: rgba(0, 0, 0, 0.5);
-    width: 40%;
-    height: 100%;
+    display: flex; /* Use flex to center content */
     justify-content: center;
     align-items: center;
     z-index: 1;
-    margin: 0 auto;
-    
+    overflow: auto; /* Enable scroll if content overflows */
 
     &.active {
         display: flex;
     }
 
     &__content {
-        background-color: white;
-        padding: 20px;
+        background-color: #ffffff;
         border-radius: 10px;
-        height: 100%;
-        width: 100%;
+        width: 90%; /* Responsive width */
+        max-width: 600px; /* Maximum width for larger screens */
+        max-height: 90vh; /* Limit height to viewport height */
+        overflow: auto; /* Enable scroll if content overflows */
         display: flex;
         flex-direction: column;
         align-items: center;
         position: relative;
+        padding: 20px;
+        box-sizing: border-box;
 
         &-icon {
             position: absolute;
             right: 20px;
             top: 20px;
+            cursor: pointer;
+            color: #444;
         }
 
         &-gallery {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Responsive grid */
             gap: 10px;
-            margin: auto;
+            margin: 20px;
+            width: 100%;
+            max-height: 200px; /* Limit gallery height */
+            overflow-x: auto; /* Enable horizontal scroll */
 
             div {
                 position: relative;
+                width: 100%;
+                height: 80px; /* Set fixed height for images */
 
                 img {
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
+                    border-radius: 5px;
                 }
 
                 svg {
                     position: absolute;
-                    top: 10px;
-                    right: 10px;
-                    padding: 5px;
-                    background-color: black;
+                    top: 5px;
+                    right: 5px;
+                    padding: 2px;
+                    background-color: rgba(0, 0, 0, 0.7);
                     border-radius: 5px;
+                    cursor: pointer;
+                    font-size: 0.8em;
+                    z-index: 2;
 
                     * {
                         fill: white;
@@ -63,47 +78,56 @@
 
         hr {
             width: 100%;
+            margin: 20px 0;
+            border: none;
+            border-bottom: 1px solid #ccc;
         }
 
         button {
-            font-family: 'Syne';
+            font-family: 'Syne', sans-serif;
             font-weight: 700;
             color: rgb(15, 15, 15);
             background-color: #FCDBA0;
-            margin: 2em auto;
+            margin: 20px auto;
             border: none;
-            width: 180px;
-            text-align: center;
+            padding: 10px 20px;
             border-radius: 60px;
-            height: 50px;
+            font-size: 1em;
+            cursor: pointer;
         }
 
         form {
             display: flex;
             flex-direction: column;
-            max-width: 420px;
             width: 100%;
-            margin-top: 40px;
+            max-width: 420px;
+            margin-top: 20px;
 
             input[type="text"],
-            select {
-                height: 50px;
-                font-size: 1.2em;
-                border: none;
-                box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+            select,
+            textarea {
+                height: 40px;
+                font-size: 1em;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                padding: 5px 10px;
+                margin-bottom: 10px;
+                box-sizing: border-box;
             }
+
+            textarea {
+                height: 100px;
+                resize: vertical;
+            }
+
 
             input[type="file"] {
                 display: none;
             }
 
             label {
-                margin: 2em 0 1em 0;
-            }
-
-            textarea {
-                border: none;
-                box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+                margin: 15px 0 5px 0;
+                font-weight: bold;
             }
 
             .preview {
@@ -114,30 +138,31 @@
                 align-items: center;
                 border-radius: 3px;
                 gap: 10px;
-                padding: 30px 20px;
+                padding: 15px;
                 width: 100%;
                 box-sizing: border-box;
 
                 img {
-                    width: 75px;
-                    height: 100%;
+                    width: 60px;
+                    height: 60px;
                     object-fit: cover;
-                    display: block;
+                    border-radius: 5px;
                 }
 
                 label {
                     border-radius: 50px;
                     background: #CBD6DC;
-                    padding: 10px 30px;
+                    padding: 8px 15px;
                     color: #306685;
                     text-align: center;
-                    font-size: 14px;
-                    margin: 0;
+                    font-size: 0.8em;
+                    cursor: pointer;
                 }
 
                 span {
                     color: #444;
-                    font-size: 10px;
+                    font-size: 0.7em;
+                    text-align: center;
                 }
             }
         }

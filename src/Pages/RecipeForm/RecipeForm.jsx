@@ -15,14 +15,25 @@ const RecipeForm = () => {
     const [filteredRecipes, setFilteredRecipes] = useState([]);
     const [suggestions, setSuggestions] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [recipes, setRecipes] = useState(Recipes)
+    // Initilisé 
+    const [recipes, setRecipes] = useState(() => {
+        const storedRecipes = JSON.parse(localStorage.getItem('recipes'));
+        return storedRecipes || Recipes;
+    });
+    // Ajouter une nouvelle recette dans le localSrtorage et les mettre à jour
+    const updateRecipes = (newRecipes) => {
+        setRecipes(newRecipes);
+        localStorage.setItem('recipes', JSON.stringify(newRecipes));
+    };
 
     const handleAddRecipe = (newRecipe) => {
         if (newRecipe) {
-            setRecipes(prevRecipes => [...prevRecipes, newRecipe]);
+            const updatedRecipes = [...recipes, newRecipe];
+            updateRecipes(updatedRecipes);
+            setFilteredRecipes(updatedRecipes); // Mettre à jour filteredRecipes
         }
-        setIsModalOpen(false); // Fermer le modal après l'ajout
-    };
+        setIsModalOpen(false);
+    };;
 
 
     // Initialisez filteredRecipes et favorites dans un useEffect 
@@ -30,7 +41,7 @@ const RecipeForm = () => {
         const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
         setFavorites(storedFavorites);
         setFilteredRecipes(recipes); // Utiliser recipes ici
-    }, []);
+    }, [recipes]);
    
 
     // Fonction pour ajouter un recette a favorites
@@ -68,8 +79,10 @@ const RecipeForm = () => {
     }
 
     const reloadData = () => {
-    setRecipes(Recipes);
-  };
+        const storedRecipes = JSON.parse(localStorage.getItem('recipes')) || Recipes;
+        updateRecipes(storedRecipes);
+        setFilteredRecipes(storedRecipes); // Mettre à jour filteredRecipes
+    };
     
     // Fonction pour filtrer les recettes par search
     const handleSearch = (value) => {
