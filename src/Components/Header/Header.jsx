@@ -1,11 +1,11 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faTimes, faBars } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react';
 import './header.scss'
 import {Link} from 'react-router'; //Correction de l'import
 
-const Header = ({ onSearch, onClose }) => {
+const Header = ({ onSearch }) => {
     const [search, setSearch] = useState('');
     const [isOpen, setIsOpen] = useState(false); 
     
@@ -45,9 +45,7 @@ const Header = ({ onSearch, onClose }) => {
                     <li className='fav'><Link to="/favories">♡</Link></li>
                 </ul>
             </nav>
-        <svg className='svg' onClick={toggleMenu} id="burger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-            <path d="M0 64H448v64H0V64zM0 224H448v64H0V224zM448 384v64H0V384H448z" />
-        </svg>
+        <span className='svg' onClick={toggleMenu} id="burger"><FontAwesomeIcon icon={faBars} /></span>
         </header>
         <div className={`header-mobile${isOpen ? ' open' : ''}`}>
             <FontAwesomeIcon icon={faTimes} className='icon' onClick={handleClose}/>

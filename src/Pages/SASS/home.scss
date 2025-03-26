@@ -38,8 +38,12 @@ h1 {
     color: #fff;
     padding: 10px;
     margin: 20px;
+    width: max-content;
     border-radius: 10px;
     cursor: pointer;
+    display: flex;
+    gap: 5px;
+
 }
 
 .section {
@@ -48,7 +52,7 @@ h1 {
     gap: 20px;
     justify-content: center;
     margin: 20px;
-    
+
     a {
         text-decoration: none;
     }
@@ -63,6 +67,8 @@ h1 {
         figure img {
             width: 100%;
             border-radius: 10px 10px 0 0;
+            height: 300px;
+            object-fit: cover;
         }
          .info {
             display: flex;
@@ -104,6 +110,8 @@ h1 {
 
           .preparation {
             color: #fff;
+            display: flex;
+            gap: 5px;
 
             &::after {
                 content: "|";
@@ -113,10 +121,11 @@ h1 {
 
           .cuisson {
             color: #fff;
+            display: flex;
+            gap: 5px;
 
             &::before {
                 content: '';
-            
             }
           }
         @media screen and (max-width: 480px) {
