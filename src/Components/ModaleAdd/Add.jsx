@@ -24,7 +24,8 @@ const ModalAdd = ({ isOpen, onClose, reload }) => {
         const file = e.target.files[0];
         setPreview(URL.createObjectURL(file));
     }
-
+    
+    // Fonction handleSublit pour sommetre la formulaire
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -39,7 +40,7 @@ const ModalAdd = ({ isOpen, onClose, reload }) => {
                 reader.readAsDataURL(file);
             });
         }
-        // Implémenter la logique pour ajouter la nouvelle recette à votre fichier JSON
+        // Ajouter les nouvelles recettes à mon fichier JSON
         const newRecipe = {
             id: Recipes.length + 1,
             name: formData.get('name'),
