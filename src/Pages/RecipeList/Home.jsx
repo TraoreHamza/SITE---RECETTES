@@ -37,7 +37,7 @@ const Home = () => {
         const newFavorites = favorites.includes(recipeId)
         ? favorites.filter(id => id !== recipeId)
         : [...favorites, recipeId];
-  
+        console.log("New favorites:", newFavorites);
         setFavorites(newFavorites);
         localStorage.setItem('favorites', JSON.stringify(newFavorites));
     };

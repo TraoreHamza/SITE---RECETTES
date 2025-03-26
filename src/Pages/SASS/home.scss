@@ -123,15 +123,22 @@ h1 {
         }
         }
     }
-    .favorite-btn {
-        cursor: pointer;
-    }
-    
-    .favorite-btn.active {
-        color: red;
-    }
-
+  
     @media screen and (max-width: 768px) {
         grid-template-columns: 1fr; 
     }
+
+    .favorite-btn {
+        color: #fff; 
+        cursor: pointer;
+        transition: color 0.3s;
+        
+        &.active {
+          color: #ff0000 !important; 
+        }
+      
+        &:hover {
+          opacity: 0.8;
+        }
+      }
 }
