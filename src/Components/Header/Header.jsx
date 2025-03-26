@@ -8,17 +8,20 @@ import {Link} from 'react-router'; //Correction de l'import
 const Header = ({ onSearch, onClose }) => {
     const [search, setSearch] = useState('');
     const [isOpen, setIsOpen] = useState(false); 
-
+    
+    // Constante pour ouvrir le menu burger
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
-
+    
+    // Fonction pour le moteur de recherche
     const handleSearch = (e) => {
         const value = e.target.value;
         setSearch(value);
         onSearch(value);
     };
-
+    
+    // Constante pour fermer le menu burger
     const handleClose = () => {
         setIsOpen(false);
     }

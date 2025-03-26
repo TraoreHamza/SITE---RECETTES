@@ -14,15 +14,17 @@ const Favorites = () => {
     const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
     setFavorites(storedFavorites);
   }, []); 
+
+  // Fonction pour ajouté une recette dans les favoris
   const toggleFavorite = (recipeId) => {
     const newFavorites = favorites.includes(recipeId)
       ? favorites.filter(id => id !== recipeId)
       : [...favorites, recipeId];
-
+   
     setFavorites(newFavorites);
     localStorage.setItem('favorites', JSON.stringify(newFavorites));
   };
-
+  // Fonction pour filtrer les recettes en fonction des favoris
   const favoriteRecipes = Recipes.filter(recipe => favorites.includes(recipe.id));
 
   return (

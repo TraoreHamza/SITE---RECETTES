@@ -6,7 +6,7 @@ import { faBowlRice, faHeart, faPenToSquare } from "@fortawesome/free-solid-svg-
 import { faUtensils } from "@fortawesome/free-solid-svg-icons";
 import Header from '../../Components/Header/Header';
 import Accordion from '../../Components/Accordion/Accordion';
-import Recipes from '../recipe.json'; // Import du fichier JSON
+import Recipes from '../recipe.json'; 
 import '../SASS/home.scss';
 
 const Home = () => {
@@ -15,7 +15,7 @@ const Home = () => {
     const [selectedCategory, setSelectedCategory] = useState('Toutes');
     const [selectedType, setSelectedType] = useState('Tous');
     const [filteredRecipes, setFilteredRecipes] = useState([]);
-     const [search, setSearch] = useState('');
+    const [search, setSearch] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     const [recipes, setRecipes] = useState(() => {
         const storedRecipes = JSON.parse(localStorage.getItem('recipes'));
@@ -28,6 +28,7 @@ const Home = () => {
         const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
         setFavorites(storedFavorites);
         setFilteredRecipes(recipes); // Utiliser recipes ici
+      
     }, []);
 
     // Fonction pour ajouter un recette a favorites
@@ -41,7 +42,7 @@ const Home = () => {
         localStorage.setItem('favorites', JSON.stringify(newFavorites));
     };
     
-    // Fonction pour filtrer les re
+    // Fonction pour filtrer les recettes par catégorie et type
     const Filters = (category, type, search) => {
         let recipesFiltered = recipes;
         // Si category est different de 'Toutes', filtrez les recettes par catégories

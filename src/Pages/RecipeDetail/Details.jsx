@@ -8,7 +8,9 @@ import Header from '../../Components/Header/Header';
 import Recipes from '../recipe';
 import '../SASS/details.scss';
 const Details = () => {
+  
     const {id} = useParams();
+    // Fonction pour recherche et retourne une recette spécifique dans le tableau Recipes en se basant sur son id
     const recipe = Recipes.find(recipe => recipe.id === id);
     console.log(id);
     return (

@@ -25,12 +25,14 @@ const RecipeForm = () => {
         setRecipes(newRecipes);
         localStorage.setItem('recipes', JSON.stringify(newRecipes));
     };
-
+    
+    // Fonction pour ajouter une nouvelle recette
     const handleAddRecipe = (newRecipe) => {
+        // Si newRecipe n'est pas vide, ajoute la nouvelle recette
         if (newRecipe) {
             const updatedRecipes = [...recipes, newRecipe];
             updateRecipes(updatedRecipes);
-            setFilteredRecipes(updatedRecipes); // Mettre à jour filteredRecipes
+            setFilteredRecipes(updatedRecipes); 
         }
         setIsModalOpen(false);
     };;
@@ -55,7 +57,7 @@ const RecipeForm = () => {
         localStorage.setItem('favorites', JSON.stringify(newFavorites));
     };
     
-    // Fonction pour filtrer les re
+    // Fonction pour filtrer les recettes catégorie et type
     const Filters = (category, type, search) => {
         let recipesFiltered = recipes;
         // Si category est different de 'Toutes', filtrez les recettes par catégories
@@ -77,7 +79,8 @@ const RecipeForm = () => {
         // Met a jour filteredRecipes
         setFilteredRecipes(recipesFiltered);
     }
-
+    
+    
     const reloadData = () => {
         const storedRecipes = JSON.parse(localStorage.getItem('recipes')) || Recipes;
         updateRecipes(storedRecipes);
@@ -99,7 +102,8 @@ const RecipeForm = () => {
             Filters(selectedCategory, selectedType, search);
         }
     };
-
+    
+    // Fonction pour fermer le modal si l'utisateur clique sur le bouton fermer ou submit
     const handleOpenModal = () => {
         setIsModalOpen(true);
     };
