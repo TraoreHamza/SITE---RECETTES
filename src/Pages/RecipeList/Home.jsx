@@ -22,6 +22,8 @@ const Home = () => {
         return storedRecipes || Recipes;
     });
 
+    console.log(setRecipes);
+
 
     // Initialisez filteredRecipes et favorites dans un useEffect 
     useEffect(() => {

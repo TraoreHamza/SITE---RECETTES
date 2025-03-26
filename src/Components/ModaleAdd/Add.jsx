@@ -89,14 +89,14 @@ const ModalAdd = ({ isOpen, onClose, reload }) => {
                         }
                     </div>
                     <input type="file" id="image" name="image" onChange={handleFileChange} accept='image/*' />
-                    <label htmlFor="name">Nom</label>
-                    <input type="text" id="name" name="name" />
+                    <label htmlFor="name">Titre</label>
+                    <input type="text" id="name" name="name" placeholder='Ecrivez le titre de votre recette' />
 
                     <label htmlFor="preparationTime">Temps de préparation</label>
-                    <input type="number" id="preparationTime" name="preparationTime" />
+                    <input type="number" id="preparationTime" name="preparationTime" placeholder='Temps de préparation' />
 
                     <label htmlFor="cookTime">Temps de cuisson</label>
-                    <input type="number" id="cookTime" name="cookTime" />
+                    <input type="number" id="cookTime" name="cookTime" placeholder='Temps de cuisson'/>
 
                     <label htmlFor="category">Catégorie</label>
                     <select name="catégory" id="category">
@@ -113,10 +113,10 @@ const ModalAdd = ({ isOpen, onClose, reload }) => {
                     </select>
 
                     <label htmlFor="ingrédients">Ingrédients (un par ligne)</label>
-                    <textarea name="ingrédients" id="ingrédients"></textarea>
+                    <textarea name="ingrédients" id="ingrédients" placeholder='Ecrivez les ingrédients'></textarea>
 
                     <label htmlFor="instructions">Étapes (une par ligne)</label>
-                    <textarea name="instructions" id="instructions"></textarea>
+                    <textarea name="instructions" id="instructions" placeholder='Ecrivez les étapes '></textarea>
                 </form>
                 <button form="test">Valider</button>
             </div>
