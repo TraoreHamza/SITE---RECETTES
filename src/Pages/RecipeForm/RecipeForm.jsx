@@ -7,7 +7,7 @@ import { faUtensils } from "@fortawesome/free-solid-svg-icons";
 import Header from '../../Components/Header/Header';
 import ModalAdd from '../../Components/ModaleAdd/Add';
 import Recipes from '../recipe.json'; // Import du fichier JSON
-import '../SASS/home.scss';
+import './form.scss';
 
 const RecipeForm = () => {
     // 
