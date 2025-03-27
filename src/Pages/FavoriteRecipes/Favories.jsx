@@ -15,15 +15,23 @@ const Favorites = () => {
     setFavorites(storedFavorites);
   }, []); 
 
-  // Fonction pour ajouté une recette dans les favoris
+    // Fonction pour ajouter un recette a favorites
+    // Basculer une recette dans les favoris
+    // Vérifie si la recette est déjà dans les favoris
+    // Crée un nouveau tableau :
+    // Retire la recette si elle existe
+    // Ajoute la recette si elle n'existe pas
   const toggleFavorite = (recipeId) => {
     const newFavorites = favorites.includes(recipeId)
       ? favorites.filter(id => id !== recipeId)
       : [...favorites, recipeId];
-   
+
+    // Met à jour l'état favorites
     setFavorites(newFavorites);
+    // Sauvegarde dans le localStorage
     localStorage.setItem('favorites', JSON.stringify(newFavorites));
   };
+  
   // Fonction pour filtrer les recettes en fonction des favoris
   const favoriteRecipes = Recipes.filter(recipe => favorites.includes(recipe.id));
 

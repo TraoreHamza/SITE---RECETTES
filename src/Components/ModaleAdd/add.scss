@@ -167,6 +167,16 @@
                     text-align: center;
                 }
             }
+
+            .error {
+                color: #f80202;
+                font-size: 1rem;
+                margin-top: 5px;
+                display: block;
+            }
+            .error_input {
+                border: 1px solid red;
+            }
         }
     }
 }

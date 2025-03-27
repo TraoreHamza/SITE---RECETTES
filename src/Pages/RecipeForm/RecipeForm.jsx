@@ -15,18 +15,29 @@ const RecipeForm = () => {
     const [filteredRecipes, setFilteredRecipes] = useState([]);
     const [suggestions, setSuggestions] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    // Initilisé 
+
+    // Cette initialisation est plus complexe :
+    // Elle vérifie d'abord s'il y a des recettes stockées dans le localStorage.
+    // Si oui, elle les utilise comme état initial.
+    // Sinon, elle utilise une variable comme valeur par défaut.
     const [recipes, setRecipes] = useState(() => {
         const storedRecipes = JSON.parse(localStorage.getItem('recipes'));
         return storedRecipes || Recipes;
     });
     // Ajouter une nouvelle recette dans le localSrtorage et les mettre à jour
+    // Cette fonction : Met à jour l'état recipes avec les nouvelles recettes.
+    // Sauvegarde ces nouvelles recettes dans le localStorage.
     const updateRecipes = (newRecipes) => {
         setRecipes(newRecipes);
         localStorage.setItem('recipes', JSON.stringify(newRecipes));
     };
     
     // Fonction pour ajouter une nouvelle recette
+    // Elle vérifie si newRecipe n'est pas vide.
+    // Si c'est le cas, elle crée un nouveau tableau avec toutes les recettes existantes plus la nouvelle.
+    // Elle appelle updateRecipes pour mettre à jour l'état et le localStorage.
+    // Elle met également à jour filteredRecipes avec la liste complète mise à jour.
+    // Enfin, elle ferme la.
     const handleAddRecipe = (newRecipe) => {
         // Si newRecipe n'est pas vide, ajoute la nouvelle recette
         if (newRecipe) {
@@ -35,7 +46,7 @@ const RecipeForm = () => {
             setFilteredRecipes(updatedRecipes); 
         }
         setIsModalOpen(false);
-    };;
+    };
 
 
     // Initialisez filteredRecipes et favorites dans un useEffect 
@@ -47,17 +58,27 @@ const RecipeForm = () => {
    
 
     // Fonction pour ajouter un recette a favorites
+    // Basculer une recette dans les favoris
+    // Vérifie si la recette est déjà dans les favoris
+    // Crée un nouveau tableau :
+    // Retire la recette si elle existe
+    // Ajoute la recette si elle n'existe pas
    const toggleFavorite = (recipeId) => {
     // constante pour stocker les recettes favorites
         const newFavorites = favorites.includes(recipeId)
         ? favorites.filter(id => id !== recipeId)
         : [...favorites, recipeId];
-  
+
+        // Met à jour l'état favorites
         setFavorites(newFavorites);
+        // Sauvegarde dans le localStorage
         localStorage.setItem('favorites', JSON.stringify(newFavorites));
     };
     
-    // Fonction pour filtrer les recettes catégorie et type
+    // Fonction pour filtrer les recettes catégorie, type...
+    // Filtre par catégorie (si sélectionné)
+    // Filtre par type (si sélectionné)
+    // Filtre par recherche textuelle (si >1 caractère)
     const Filters = (category, type, search) => {
         let recipesFiltered = recipes;
         // Si category est different de 'Toutes', filtrez les recettes par catégories
@@ -68,8 +89,11 @@ const RecipeForm = () => {
         if (type !== 'Tous') {
             recipesFiltered = recipesFiltered.filter(recipe => recipe.type === type);
         }
+
         // Si search n'est pas vide filtrez les recettes search
         if (search.length > 1) {
+        // Ce filtrage ne s'applique que si la chaîne de recherche (search) contient plus d'un caractère.
+        // Cela évite des recherches trop larges ou des opérations inutiles pour des saisies très courtes.
             recipesFiltered = recipesFiltered.filter(recipe => 
             recipe.name.toLowerCase().includes(search.toLowerCase()) ||
             recipe.catégory.toLowerCase().includes(search.toLowerCase()) ||
@@ -80,7 +104,10 @@ const RecipeForm = () => {
         setFilteredRecipes(recipesFiltered);
     }
     
-    
+    // Utilité : Recharge les données depuis le localStorage
+    // Récupère les recettes sauvegardées
+    // Utilise Recipes comme fallback si rien dans le localStorage
+    // Met à jour à la fois recipes et filteredRecipes
     const reloadData = () => {
         const storedRecipes = JSON.parse(localStorage.getItem('recipes')) || Recipes;
         updateRecipes(storedRecipes);
@@ -92,11 +119,14 @@ const RecipeForm = () => {
         // Si value est superieur a 1, filtrez les recette par search
         if (value.length > 1) {
             const regex = new RegExp(`^${value}`, 'i');
+        // Filtre toutes les recettes dont le nom correspond à la regex
+        // Garde seulement les 5 premières suggestions
             const suggestionList = recipes.filter(recipe => regex.test(recipe.name));
             setSuggestions(suggestionList.slice(0, 5));
         
             Filters(selectedCategory, selectedType, value);
-        // Sinon videz la suggestion
+        // Sinon vide la liste des suggestions
+        // Réapplique les filtres avec la dernière valeur de recherche valide
         } else {
             setSuggestions([]);
             Filters(selectedCategory, selectedType, search);

@@ -9,17 +9,22 @@ import Recipes from '../recipe';
 import '../SASS/details.scss';
 
 const Details = () => {
+  // Utilise le hook useParams pour extraire l'ID de la recette.
   const { id } = useParams();
+  // Crée un état pour stocker la recette trouvée.
   const [recipe, setRecipe] = useState(null);
-
+ 
+  // Utilisation de useEffect pour charger la recette quand l'ID change.
   useEffect(() => {
       // Récupérer toutes les recettes du localStorage
+      // Combine les recettes initiales (Recipes) avec celles du localStorage.
       const storedRecipes = JSON.parse(localStorage.getItem('recipes')) || [];
       
       // Combiner les recettes initiales avec celles du localStorage
       const allRecipes = [...Recipes, ...storedRecipes];
       
       // Trouver la recette correspondant à l'ID
+      // Gère les cas où l'ID pourrait être une chaîne ou un nombre.
       const foundRecipe = allRecipes.find(recipe => recipe.id === id || recipe.id === parseInt(id));
       setRecipe(foundRecipe);
   }, [id]);

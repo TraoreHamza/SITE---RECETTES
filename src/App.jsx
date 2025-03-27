@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from 'react-router';
 import Home from './Pages/RecipeList/Home';
 import Details from './Pages/RecipeDetail/Details';
 import Favories from './Pages/FavoriteRecipes/Favories'
-import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
 import RecipeForm from './Pages/RecipeForm/RecipeForm';
 
